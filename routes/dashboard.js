@@ -37,7 +37,7 @@ dashboardRouter.use((req, res, next) => {
         res.status(401).json({
             error: {
                 status: 401,
-                message: "Invalid token"
+                message: "Invalid token or token expires"
             }
         });
     }
