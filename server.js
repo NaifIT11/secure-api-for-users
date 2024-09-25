@@ -6,6 +6,12 @@ app =  express();
 
 
 
+app.use((req , res) => {
+    res.json({
+        message: "get token from /login and acccess your info in /dashboard"
+    })
+});
+
 
 
 
