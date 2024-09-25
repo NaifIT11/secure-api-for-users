@@ -19,6 +19,8 @@ loginRouter.get("/" , (req , res) => {
 loginRouter.post("/" , (req , res) => {
     const {username , password} = req.body;
 
+    console.log(req.body)
+
     if(username !== 'ahmed'){
         res.status(404).json({
             error:{
@@ -37,7 +39,7 @@ loginRouter.post("/" , (req , res) => {
     }
 
     const accessToken = jwt.sign({
-        email: email,
+        username: username,
         password: password
     }, process.env.SECRET_KEY , {expiresIn: '1h'});
 
