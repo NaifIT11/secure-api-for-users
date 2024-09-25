@@ -3,13 +3,17 @@ const path = require("path");
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const dashboardRouter = require("./routes/dashboard");
+const loginRouter = require("./routes/login");
+require('dotenv').config()
 app =  express();
 
 
 
 
-
+//routes
 app.use("/dashboard" , dashboardRouter);
+app.use("/login" ,loginRouter);
+
 
 //404 route
 app.use((req , res) => {
@@ -18,6 +22,7 @@ app.use((req , res) => {
     })
 });
 
-app.listen(5000 , () => {
-    console.log("server is running on port 5000")
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+    console.log(`server is running on port ${PORT}`)
 })
