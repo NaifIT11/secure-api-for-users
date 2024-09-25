@@ -17,6 +17,7 @@ loginRouter.get("/" , (req , res) => {
 
 
 loginRouter.post("/" , (req , res) => {
+    console.log(`POST /login`)
     const {username , password} = req.body;
 
     console.log(req.body)

@@ -44,6 +44,7 @@ dashboardRouter.use((req, res, next) => {
 });
 
 dashboardRouter.get("/", (req, res) => {
+    console.log(`GET /dashboard ${res.statusCode}`)
     res.json({
         data: userData
     });
