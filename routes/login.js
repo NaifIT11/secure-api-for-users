@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const express = require("express");
-const dashboardRouter = express.Router();
 require('dotenv').config()
 
 const loginRouter = express.Router()
