@@ -34,6 +34,7 @@ dashboardRouter.use((req, res, next) => {
         }
         next();
     } catch (error) {
+        console.log("GET /dashboard 401")
         res.status(401).json({
             error: {
                 status: 401,
