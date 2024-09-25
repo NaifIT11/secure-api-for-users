@@ -27,7 +27,7 @@ loginRouter.post("/" , (req , res) => {
             }
         })
     }
-    if(password !== 'ahmed#wer123#mM'){
+    if(password !== '123123'){
         res.status(404).json({
             error:{
                 status: 404,
