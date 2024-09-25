@@ -16,5 +16,29 @@ loginRouter.get("/" , (req , res) => {
 });
 
 
+loginRouter.post("/" , (req , res) => {
+    const {email , password} = req.body;
+
+    if(email !== 'ahmed@gmail.com'){
+        res.status(404).json({
+            error:{
+                status: 404,
+                message: "invaild data"
+            }
+        })
+    }
+    if(password !== 'ahmed#wer123#mM'){
+        res.status(404).json({
+            error:{
+                status: 404,
+                message: "invaild data"
+            }
+        })
+    }
+
+    
+
+});
+
 
 module.exports = loginRouter

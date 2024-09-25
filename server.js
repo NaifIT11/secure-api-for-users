@@ -8,6 +8,9 @@ require('dotenv').config()
 app =  express();
 
 
+//parse json for all routes
+
+app.use(bodyParser.json());
 
 
 //routes
