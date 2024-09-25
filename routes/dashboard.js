@@ -17,10 +17,29 @@ dashboardRouter.use((req , res , next) => {
 
     const token = authoriztion.split(" ")[1];
 
-    
+    jwt.verify(token , process.env.SECRET_KEY , (err , user)  => {
+        if(err){
+            res.status(403).json({
+                error:{
+                    status: 403,
+                    message: "invalid token"
+                }
+            })
+        }
+        
+    });
+
+    next();
 
 })
 
+
+
+dashboardRouter.get("/" , (req , res) => {
+    res.json({
+        fakeData: "fwklwnkvnlfjlwj"
+    })
+})
 
 
 
