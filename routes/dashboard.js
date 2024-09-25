@@ -17,19 +17,17 @@ dashboardRouter.use((req , res , next) => {
 
     const token = authoriztion.split(" ")[1];
 
-    jwt.verify(token , process.env.SECRET_KEY , (err , user)  => {
-        if(err){
-            res.status(403).json({
-                error:{
-                    status: 403,
-                    message: "invalid token"
-                }
-            })
-        }
-        
-    });
-
-    next();
+    try {
+        const decodedToken = jwt.verify(token , process.env.SECRET_KEY);
+        next();
+    } catch (error) {
+        res.status(401).json({
+            error:{
+                status: 401,
+                message: "invalid token"
+            }
+        })
+    }
 
 })
 
