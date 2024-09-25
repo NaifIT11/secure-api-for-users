@@ -3,6 +3,8 @@ const express = require("express");
 const dashboardRouter = express.Router();
 require('dotenv').config();
 
+let userData = null;
+
 dashboardRouter.use((req, res, next) => {
     const authorization = req.headers['Authorization'] || req.headers['authorization']; // Check for both cases
     if (!authorization) {
@@ -26,6 +28,10 @@ dashboardRouter.use((req, res, next) => {
 
     try {
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+        userData = {
+            username: decodedToken.username,
+            password: decodedToken.password
+        }
         next();
     } catch (error) {
         res.status(401).json({
@@ -39,7 +45,7 @@ dashboardRouter.use((req, res, next) => {
 
 dashboardRouter.get("/", (req, res) => {
     res.json({
-        fakeData: "fwklwnkvnlfjlwj"
+        data: userData
     });
 });
 
