@@ -36,7 +36,12 @@ loginRouter.post("/" , (req , res) => {
         })
     }
 
-    
+    const accessToken = jwt.sign({
+        email: email,
+        password: password
+    }, process.env.SECRET_KEY , {expiresIn: '1h'});
+
+    res.status(200).json({accessToken: accessToken})
 
 });
 
