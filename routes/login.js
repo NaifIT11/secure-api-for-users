@@ -17,9 +17,9 @@ loginRouter.get("/" , (req , res) => {
 
 
 loginRouter.post("/" , (req , res) => {
-    const {email , password} = req.body;
+    const {username , password} = req.body;
 
-    if(email !== 'ahmed@gmail.com'){
+    if(username !== 'ahmed'){
         res.status(404).json({
             error:{
                 status: 404,
