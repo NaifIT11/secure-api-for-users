@@ -1,33 +1,31 @@
-const express = require("express");
-const path = require("path");
-const cors = require('cors')
-const bodyParser = require('body-parser');
-const dashboardRouter = require("./routes/dashboard");
-const loginRouter = require("./routes/login");
-require('dotenv').config()
-app =  express();
+import express from "express";
+import path from "path";
+import cors from "cors";
+import bodyParser from "body-parser";
+import dashboardRouter from "./routes/dashboard.js";
+import loginRouter from "./routes/login.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 
-//parse json for all routes
+const app = express();
 
+// Parse JSON for all routes
 app.use(bodyParser.json());
 
+// Routes
+app.use("/dashboard", dashboardRouter);
+app.use("/login", loginRouter);
 
-//routes
-app.use("/dashboard" , dashboardRouter);
-app.use("/login" ,loginRouter);
-
-//404 route
-app.use((req , res) => {
+// 404 route
+app.use((req, res) => {
     res.status(404).json({
-        message: "get token from /login and acccess your info in /dashboard"
-    })
+        message: "Get token from /login and access your info in /dashboard"
+    });
 });
 
-const PORT = process.env.PORT;
-
-
+const PORT = process.env.PORT
 
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`)
-})
+    console.log(`Server is running on port ${PORT}`);
+});

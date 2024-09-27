@@ -1,8 +1,10 @@
-const jwt = require("jsonwebtoken");
-const express = require("express");
-const dashboardRouter = express.Router();
-require('dotenv').config();
+import jwt from "jsonwebtoken";
+import express from "express";
+import dotenv from "dotenv";
 
+dotenv.config();
+
+const dashboardRouter = express.Router();
 let userData = null;
 
 dashboardRouter.use((req, res, next) => {
@@ -31,24 +33,24 @@ dashboardRouter.use((req, res, next) => {
         userData = {
             username: decodedToken.username,
             password: decodedToken.password
-        }
+        };
         next();
     } catch (error) {
-        console.log("GET /dashboard 401")
+        console.log("GET /dashboard 401");
         res.status(401).json({
             error: {
                 status: 401,
-                message: "Invalid token or token expires"
+                message: "Invalid token or token expired"
             }
         });
     }
 });
 
 dashboardRouter.get("/", (req, res) => {
-    console.log(`GET /dashboard ${res.statusCode}`)
+    console.log(`GET /dashboard ${res.statusCode}`);
     res.json({
         data: userData
     });
 });
 
-module.exports = dashboardRouter;
+export default dashboardRouter;
