@@ -17,15 +17,17 @@ app.use(bodyParser.json());
 app.use("/dashboard" , dashboardRouter);
 app.use("/login" ,loginRouter);
 
-
 //404 route
 app.use((req , res) => {
-    res.json({
+    res.status(404).json({
         message: "get token from /login and acccess your info in /dashboard"
     })
 });
 
 const PORT = process.env.PORT;
+
+
+
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 })
