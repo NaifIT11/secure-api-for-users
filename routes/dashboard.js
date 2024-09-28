@@ -1,11 +1,20 @@
 import jwt from "jsonwebtoken";
 import express from "express";
 import dotenv from "dotenv";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
 const dashboardRouter = express.Router();
 let userData = null;
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 20,
+    standardHeaders: "draft-7"
+});
+
+dashboardRouter.use(limiter);
 
 dashboardRouter.use((req, res, next) => {
     const authorization = req.headers['Authorization'] || req.headers['authorization']; // Check for both cases
