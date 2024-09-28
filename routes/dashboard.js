@@ -14,7 +14,7 @@ const limiter = rateLimit({
     standardHeaders: "draft-7",
     message: {
         error: {
-            statud: 429,
+            status: 429,
             message: "Too many requests you have only 20 request per 15 minute"
         }
     }
