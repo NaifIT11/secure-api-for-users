@@ -11,7 +11,13 @@ let userData = null;
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 20,
-    standardHeaders: "draft-7"
+    standardHeaders: "draft-7",
+    message: {
+        error: {
+            statud: 429,
+            message: "Too many requests you have only 20 request per 15 minute"
+        }
+    }
 });
 
 dashboardRouter.use(limiter);
